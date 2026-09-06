@@ -1,64 +1,48 @@
-# Habit Auth Python Client SDK
+# Habit Auth Python Client SDK & Complete Example Solutions
 
-Official cross-platform Python client library for Habit Auth enterprise software protection, licensing, and anti-tamper telemetry.
+Official Python client integration library and full source code examples (Console application, Tkinter Dark GUI) for **Habit Auth** enterprise software licensing and hardware-lock security.
 
-[![Website](https://img.shields.io/badge/Official_Website-habitauth.com-0284c7?style=flat-square)](https://habitauth.com)
-[![Documentation](https://img.shields.io/badge/Developer_Docs-habitauth.com%2Fdocs-2563eb?style=flat-square)](https://habitauth.com/docs)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+[![Website](https://img.shields.io/badge/Official_Website-habitauth.com-6366f1.svg)](https://habitauth.com)
+[![Documentation](https://img.shields.io/badge/Documentation-habitauth.com/docs-10b981.svg)](https://habitauth.com)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+---
+
+## Solution Structure
+
+```
+habitauth-python/
+├── .gitignore
+├── README.md
+├── requirements.txt
+├── habitauth/                           # Core SDK package
+│   ├── __init__.py
+│   └── habitauth.py                     # HabitAuth Client Implementation
+└── examples/
+    ├── console_example.py               # Interactive CLI Application
+    └── gui_example.py                   # Complete Modern Tkinter GUI (Login & Dashboard)
+```
 
 ---
 
 ## Features
 
-- **Cross-Platform:** Seamlessly runs on Windows, Linux, and macOS.
-- **Hardware Profile Binding:** Deep hardware profiling via WMI and machine UUID.
-- **HMAC-SHA256 Response Integrity:** Cryptographic verification with replay prevention.
-- **Background Telemetry:** Dedicated daemon thread for 30-second heartbeats with remote process termination.
+- **Cross-Platform Compatibility:** Works on Windows, Linux, and macOS.
+- **Hardware-ID (HWID) Locking:** Automatically generates SHA-256 machine hardware fingerprints.
+- **Modern Dark GUI Included:** Pre-built Tkinter Login window and Main Dashboard window (`examples/gui_example.py`).
+- **Remote Killswitch & Heartbeat:** Protects your Python scripts and tools from unauthorized distribution.
 
 ---
 
-## Installation
+## Quick Setup
 
-```bash
-pip install requests
-```
-
----
-
-## Quick Integration
-
-```python
-from habit_auth import HabitAuthApp
-
-# 1. Initialize HabitAuth client
-auth = HabitAuthApp(
-    name="YOUR_APP_NAME",
-    ownerid="YOUR_APP_ID",
-    secret="YOUR_APP_SECRET",
-    version="1.0"
-)
-
-# 2. Handshake with server
-if not auth.init():
-    print("Init failed:", auth.response.message)
-    exit(1)
-
-# 3. User Login
-if auth.login("demo_user", "password123"):
-    print(f"Logged in successfully. Welcome {auth.user.username}")
-    print(f"License Expiration: {auth.user.expires_at}")
-
-    # 4. Start background telemetry heartbeat
-    auth.start_heartbeat(30)
-else:
-    print("Login failed:", auth.response.message)
-```
+\`\`\`bash
+git clone https://github.com/habitauth/habitauth-python.git
+cd habitauth-python
+pip install -r requirements.txt
+python examples/gui_example.py
+\`\`\`
 
 ---
 
-## Documentation & Support
-
-- **Full Documentation:** [https://habitauth.com/docs](https://habitauth.com/docs)
-- **Official Portal:** [https://habitauth.com](https://habitauth.com)
-- **YouTube:** [https://youtube.com/@habitauth](https://youtube.com/@habitauth)
-- **Technical Support:** support@habitauth.com
+(C) 2026 Habit Auth. All rights reserved.
